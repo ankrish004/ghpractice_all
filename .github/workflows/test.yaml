@@ -2,7 +2,7 @@ name: Test project
 on: 
     push:
         branches: 
-            - main
+            - master
             - dev
             - 'dev-*' # push on any branch with dev
 
