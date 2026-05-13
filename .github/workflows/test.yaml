@@ -1,9 +1,10 @@
 name: Test project
 on: 
-    pull_request:
-        types:
-            - opened
-    workflow_dispatch:
+    push:
+        branches: 
+            - main
+            - dev
+            - 'dev-*' # push on any branch with dev
 
 jobs:
     test:
@@ -11,6 +12,13 @@ jobs:
         steps:
             - name: Get codes
               uses: actions/checkout@v6
+            
+            - name: cache depency
+            
+              uses: actions/cache@v4
+              with:
+                path: ~/.npm
+                key: dep-nodes-module-${{ hashFiles('**/package-lock.json')}}
             
             - name: Install NodeJS
               uses: actions/setup-node@v6
