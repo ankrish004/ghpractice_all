@@ -1,0 +1,21 @@
+name: Test project
+on: push
+jobs:
+    test:
+        runs-on: ubutu-latest
+        steps:
+            - name: Get codes
+              uses: actions/checkout@v6
+            
+            - name: Install NodeJS
+              uses: actions/setup-node@v6
+              with: 
+                node-version: 24
+            - name: Install dependecies
+              run: npm ci
+
+            - name: Running the test
+              run: npm test
+
+
+
