@@ -1,5 +1,10 @@
 name: Test project
-on: workflow_dispatch
+on: 
+    pull_request:
+        types:
+            - opened
+    workflow_dispatch:
+
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -17,21 +22,6 @@ jobs:
             - name: Running the test
               run: npm test
     
-    deploy: 
-        needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - name: code checkout
-              uses: actions/checkout@v6
-
-            - name: install NodeJS
-              uses: actions/setup-node@v6
-              with:
-                node-version: 24
-            - name: install dependency
-              run: npm ci
-            - name: build step
-              run: npm run build
 
 
 
